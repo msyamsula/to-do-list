@@ -30,13 +30,13 @@ before_script:
 script:
   # delete current docker-compose
   - ssh -i $AWS_PEM $AWS_HOST@$DEPLOY_HOST "rm -rf ./docker-compose.yml" #aws
-  - gcloud compute ssh $VM_NAME --command "cd $GCP_WORKDIR && rm -rf ./docker-compose.yml" #gcp
+  - sudo gcloud compute ssh $VM_NAME --command "cd $GCP_WORKDIR && sudo rm -rf ./docker-compose.yml" #gcp
   # delete current deploy.sh
   - ssh -i $AWS_PEM $AWS_HOST@$DEPLOY_HOST "rm -rf ./deploy-aws.sh" #aws
-  - gcloud compute ssh $VM_NAME --command "cd $GCP_WORKDIR && rm -rf ./deploy-gcp.sh" #gcp
+  - sudo gcloud compute ssh $VM_NAME --command "cd $GCP_WORKDIR && sudo rm -rf ./deploy-gcp.sh" #gcp
   # delete env at remote
   - ssh -i $AWS_PEM $AWS_HOST@$DEPLOY_HOST "rm -rf ./.env"
-  - gcloud compute ssh $VM_NAME --command "cd $GCP_WORKDIR && rm -rf ./.env"
+  - sudo gcloud compute ssh $VM_NAME --command "cd $GCP_WORKDIR && sudo rm -rf ./.env"
   # send new env to remote
   - scp -i $AWS_PEM ./.env $AWS_HOST@$DEPLOY_HOST:$AWS_WORKDIR
   - sudo gcloud compute scp ./.env $VM_NAME:$GCP_WORKDIR
@@ -50,4 +50,4 @@ script:
 after_script:
   # deploy
   - ssh -i $AWS_PEM $AWS_HOST@$DEPLOY_HOST "bash -s < deploy-aws.sh" #aws
-  - gcloud compute ssh $VM_NAME --command "cd $GCP_WORKDIR && bash -s < deploy-gcp.sh" #gcp
+  - sudo gcloud compute ssh $VM_NAME --command "cd $GCP_WORKDIR && sudo bash -s < deploy-gcp.sh" #gcp
