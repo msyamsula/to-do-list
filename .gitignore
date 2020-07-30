@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+service-acount.json
+deploy_rsa.pub
+deploy_rsa
+.env

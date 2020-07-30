@@ -2,6 +2,6 @@ version: "3"
 
 services:
   front-end:
-    image: syamsuldocker/to-do-list:front-end
+    image: syamsuldocker/to-do-list
     ports:
      - "80:80"
