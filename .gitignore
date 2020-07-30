@@ -26,3 +26,5 @@ service-acount.json
 deploy_rsa.pub
 deploy_rsa
 .env
+to-do-list-aws.pem
+service-account-full.json
